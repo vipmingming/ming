@@ -1,17 +1,17 @@
 1.在目录下建立.htaccess伪静态：
-RewriteEngine On
+`RewriteEngine On
 RewriteRule ^(\w+)\.jpg$ image.php?p=$1 [L]
-order deny,allow
+order deny,allow`
 
 
 这个文件的作用是把目录下所有.jpg后缀图片重定向到image.php
 
 2.建立image.php程序：
-<?php
+`<?php
 header('Content-Type:image/jpeg');
 if(!empty($_SERVER['HTTP_REFERER'])){header('Location:https://bwh8.net/aff.php?aff=-1');die;}
 ob_clean();flush();readfile('image.jpg');
-?>
+?>`
 
 
 这个程序判断如果没有REFERER，则读取真实图片，防止有人手贱去复制图片地址一探究竟。
